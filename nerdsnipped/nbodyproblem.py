@@ -58,11 +58,13 @@ class planet(object):
 	def getposition(self):
 		return self.position
 
-	def setposition(self, newposition):
-		"""allows you to set the position of the planet to the newposition
+	def setstartingpoint(self, newposition, newxspeed, newyspeed):
+		"""allows you to set the position/speed of the planet to the newposition.
 		handy if you want to do a number of simulations all starting from the same position
 		"""
 		self.position = newposition
+		self.xspeed = newxspeed
+		self.yspeed = newyspeed
 
 	def getforce(self, otherplanet):
 		"""returns the force that the other planet is putting on self"""

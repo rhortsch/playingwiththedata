@@ -7,8 +7,8 @@ earthstarts = position(149.6*10**9,0)
 earth = planet(5.972*10**24, earthstarts, 0, 29.8*1000)
 
 def resetSunEarth():
-	sun.setposition(thecenter)
-	earth.setposition(earthstarts)
+	sun.setstartingpoint(thecenter, 0,0)
+	earth.setstartingpoint(earthstarts, 0, 29.8*1000)
 
 def GraphSunEarth(numtrials=60*24*100, doitfaster=1):
 	"""plots the sun and earth rotating around each other
@@ -32,7 +32,7 @@ moon = planet(7.3476*10**22, moonlocation, 0, 29.8*1000+1023)
 
 #i didn't use the prebuilt code of graphData because I also wanted to zoom in to see the moon
 #we make two plots: one of everything, one close up of the moon-earth (with same simulation)
-def AMoonSimulation(numtrials=365*24,doitfaster=60):
+def AMoonSimulation(numtrials=80*24,doitfaster=60):
 	resetSunEarth()
 	moonplot = simulation([sun,earth,moon],numtrials,doitfaster)
 	f, (ax1, ax2) = pylab.subplots(1,2)
@@ -42,7 +42,7 @@ def AMoonSimulation(numtrials=365*24,doitfaster=60):
 		ax1.scatter(moonplot[i][0], moonplot[i][1], marker = markers[i], color=colors[i])
 	ax1.set_xlim([-5*10**9,200*10**9])
 	ax1.set_ylim([-10**10,1.5*10**11])
-	ax1.set_title('80-day path of Earth-Moon around the Sun',y=1.05)
+	ax1.set_title(str(numtrials*doitfaster/(24*60)) +'-day path of Earth-Moon around the Sun',y=1.05)
 	for i in [1,2]:
 		ax2.scatter(moonplot[i][0], moonplot[i][1], marker = '.', color=colors[i])
 	myxmin = 149.6*10**9 - 25*384.4*10**6
